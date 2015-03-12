@@ -1,10 +1,16 @@
+PHP Push notification server for Android and iOS devices 
+====
+
 Simple library to send push notifications to Android and iOS devices
 
 Fork from: https://github.com/gonzalo123/androidpusher
 
+Usage
+----
+
 ```php
 
-// you need store key for Apple certificate in root folder with name "ck.pem". You can change it in lib/
+// You need store key for Apple certificate in root folder with name "ck.pem". You can change it in "lib/iOSPusher/Pusher.php"
 
 
 $title = 'Title';
