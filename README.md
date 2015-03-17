@@ -8,7 +8,7 @@ Fork from: https://github.com/gonzalo123/androidpusher
 Usage
 ----
 
-```php
+```javascript
 
 // You need store key for Apple certificate in root folder with name "ck.pem". You can change it in "lib/iOSPusher/Pusher.php"
 
@@ -36,4 +36,17 @@ $iOSPusher->notify($iOSDeviceToken, array(
     ),
     'sound' => 'default'
 ));
+```
+
+
+Multiple push notifications (Android)
+----
+
+If you want to show more than one notification in your notification bar on Android you have to iterate parameter notId. Example:
+
+```javascript
+
+$androidPusher->notify($androidDeviceToken, array("message"=> $message, "title"=> $title, "notId" => 1));
+$androidPusher->notify($androidDeviceToken, array("message"=> $message2, "title"=> $title2, "notId" => 2));
+
 ```
