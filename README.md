@@ -15,7 +15,6 @@ $ composer require gonzalo123/androidpusher
 
 override package repository in `composer.json`:
 ```json
-# ...
 "repositories": [
     {
         "url": "https://github.com/jvaclavik/push-notification-server-android-ios-php.git",
@@ -24,7 +23,6 @@ override package repository in `composer.json`:
 ],
 "require": {
     "gonzalo123/androidpusher": "dev-master",
-# ...
 ```
 
 
