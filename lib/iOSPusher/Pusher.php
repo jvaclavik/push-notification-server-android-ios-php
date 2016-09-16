@@ -16,7 +16,7 @@ class Pusher
     }
 
     /**
-     * @param string|array $regIds
+     * @param string|array $regId
      * @param string $data
      * @throws \Exception
      */
@@ -35,7 +35,6 @@ class Pusher
         echo 'Connected to APNS' . PHP_EOL;
         $body['aps'] = $data;
         $payload = json_encode($body);
-
 
         $msg = chr(0) . pack('n', 32) . pack('H*', $this->regId) . pack('n', strlen($payload)) . $payload; // Build the binary notification
         $result = fwrite($fp, $msg, strlen($msg)); // Send it to the server
@@ -62,23 +61,5 @@ class Pusher
     public function getOutputAsObject()
     {
         return json_decode($this->output);
-    }
-
-    private function getHeaders()
-    {
-        return [
-            'Authorization: key=' . $this->apiKey,
-            'Content-Type: application/json'
-        ];
-    }
-
-    private function getPostFields($regIds, $data)
-    {
-        $fields = [
-            'registration_ids' => is_string($regIds) ? [$regIds] : $regIds,
-            'data'             => is_string($data) ? ['message' => $data] : $data,
-        ];
-
-        return json_encode($fields, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
     }
 }
