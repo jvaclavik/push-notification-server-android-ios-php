@@ -16,10 +16,22 @@ $androidApiKey = "AIzaSyAkBcScJJ_MWswDRYm7y_qptno-KuwKo65";
 
 
 // Android pusher
+// for Google Cloud Messaging
 
 $androidPusher = new AndroidPusher\Pusher($androidApiKey);
-$androidPusher->notify($androidDeviceToken, array("message"=> $message, "title"=> $title));
-//
+$androidPusher->notify($androidDeviceToken, [
+    "message" => $message,
+    "title" => $title,
+]);
+
+// for Firebase Cloud Messaging
+
+$androidPusher = new AndroidPusher\Pusher($androidApiKey, null, true);
+$androidPusher->notify($androidDeviceToken, [
+    "message" => $message,
+    "title" => $title,
+]);
+
 //print_r($androidPusher->getOutputAsArray());
 
 
@@ -29,12 +41,12 @@ $androidPusher->notify($androidDeviceToken, array("message"=> $message, "title"=
 // iOS pusher
 
 $iOSPusher = new iOSPusher\Pusher($iOSPassphrase);
-$iOSPusher->notify($iOSDeviceToken, array(
-    'alert' => array(
+$iOSPusher->notify($iOSDeviceToken, [
+    "alert" => [
         "title" => $title,
-        "body" => $message
-    ),
-    'sound' => 'default'
-));
+        "body" => $message,
+    ],
+    "sound" => "default",
+]);
 
 //print_r($iOSPusher->getOutputAsArray());
